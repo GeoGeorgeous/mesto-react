@@ -11,12 +11,14 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(false)
 
   // Хенделры onclick
   const handleEditProfileClick = () => {setEditProfilePopupOpen(true)};
   const handleAddPlaceClick = () => {setAddPlacePopupOpen(true)};
   const handleEditAvatarClick = () => {setEditAvatarPopupOpen(true)}
+  const handleDeleteButtonClick = () => {setConfirmDeletePopupOpen(true)}
   const handleCardClick = (card) => {setSelectedCard(card)}
   const closeAllPopups = () => {
     setEditProfilePopupOpen(false);
@@ -94,7 +96,17 @@ function App() {
           )}
         />
 
-        
+        <PopupWithForm
+          name="confirm-delete"
+          title="Вы уверены?"
+          isOpen={isConfirmDeletePopupOpen}
+          onClose={closeAllPopups}
+          children={(
+            <button class="popup__save-button popup__save-button_context_confirm-delete" type="submit">Да</button>
+          )}
+        />
+
+
 
         <ImagePopup
           card={selectedCard}
