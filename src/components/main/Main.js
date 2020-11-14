@@ -23,7 +23,7 @@ export default function Main(props) {
     .then(data => {
       setCards(data.map((card) => {
         return {
-        _id: card._id,
+        id: card._id,
         title: card.name,
         link: card.link,
         likes: card.likes.length
@@ -52,8 +52,8 @@ export default function Main(props) {
       <section className="cards">
         <ul className="cards__items">
           {
-          cards.map((card) => { return(
-          <Card title={card.title} link={card.link} key={card._id} />
+          cards.map((card) => { return (
+          <Card data={card} key={card.id} onCardClick={props.onCardClick}/>
           )})  }
         </ul>
       </section>
