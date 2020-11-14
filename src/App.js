@@ -1,21 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 
 // function App() {
 //   return (
-//     <div classNameName="App">
-//       <header classNameName="App-header">
-//         <img src={logo} classNameName="App-logo" alt="logo" />
+//     <div className="App">
+//       <header className="App-header">
+//         <img src={logo} className="App-logo" alt="logo" />
 //         <p>
 //           Edit <code>src/App.js</code> and save to reload.
 //         </p>
 //         <a
-//           classNameName="App-link"
+//           className="App-link"
 //           href="https://reactjs.org"
 //           target="_blank"
 //           rel="noopener noreferrer"
 //         >
-//           Learn React
+//           Learn React!
 //         </a>
 //       </header>
 //     </div>
@@ -25,44 +25,45 @@ import './App.css';
 function App() {
   return (
     <>
-      <header classNameName="header">
-        <img classNameName="logo" alt="Логотип Mesto Russia" src="./images/logo.svg" />
+    <body class="root">
+      <header className="header">
+        <img className="logo" alt="Логотип Mesto Russia" src="./images/logo.svg" />
       </header>
 
-      <main classNameName="root__main">
-        <section classNameName="profile">
-          <div classNameName="profile__avatar">
-            <img classNameName="profile__avatar-image" alt="Аватар" src="./images/profile-avatar.jpg" />
-            <div classNameName="profile__avatar-edit"></div>
+      <main className="root__main">
+        <section className="profile">
+          <div className="profile__avatar">
+            <img className="profile__avatar-image" alt="Аватар" src="./images/profile-avatar.jpg" />
+            <div className="profile__avatar-edit"></div>
           </div>
-          <div classNameName="profile__profile-wrapper">
-            <div classNameName="profile__name-wrapper">
-              <h1 classNameName="profile__name" id="profile__name">Имя профиля</h1>
-              <button classNameName="profile__edit-button" type="button" aria-label="Редактировать"></button>
+          <div className="profile__profile-wrapper">
+            <div className="profile__name-wrapper">
+              <h1 className="profile__name" id="profile__name">Имя профиля</h1>
+              <button className="profile__edit-button" type="button" aria-label="Редактировать"></button>
             </div>
-            <p classNameName="profile__description" id="profile__description">Описание</p>
+            <p className="profile__description" id="profile__description">Описание</p>
           </div>
-          <button classNameName="profile__add-button" type="button" aria-label="Добавить"></button>
+          <button className="profile__add-button" type="button" aria-label="Добавить"></button>
         </section>
 
-        <section classNameName="cards">
-          <ul classNameName="cards__items">
+        <section className="cards">
+          <ul className="cards__items">
 
           </ul>
         </section>
 
       </main>
 
-      <footer classNameName="footer">
-        <p classNameName="footer__copyright">Георгий Горчев &copy; 2020 Mesto Russia</p>
+      <footer className="footer">
+        <p className="footer__copyright">Георгий Горчев &copy; 2020 Mesto Russia</p>
       </footer>
 
-      <div classNameName="popup" data-type="place">
-        <form className="popup__container" name="place" id="place" novalidate>
+      <div className="popup" data-type="place">
+        <form className="popup__container" name="place" id="place" noValidate>
           <h3 className="popup__title">Новое место</h3>
             <fieldset className="popup__form" form="place">
               <div className="popup__form-item-group">
-                <input id="title" className="popup__form-item popup__form-item_input_name" type="text" placeholder="Название" name="title" minlength="1" maxlength="30" required />
+                <input id="title" className="popup__form-item popup__form-item_input_name" type="text" placeholder="Название" name="title" minLength="1" maxLength="30" required />
                 <span id="title-error" className="popup__form-error"></span>
               </div>
               <div className="popup__form-item-group">
@@ -76,15 +77,15 @@ function App() {
       </div>
 
       <div className="popup" data-type="account">
-        <form className="popup__container" name="account" id="account" novalidate>
+        <form className="popup__container" name="account" id="account" noValidate>
           <h3 className="popup__title">Редактировать профиль</h3>
             <fieldset className="popup__form" form="account">
               <div className="popup__form-item-group">
-                <input id="username" className="popup__form-item popup__form-item_input_name" type="text" placeholder="Имя" name="name" minlength="2" maxlength="40" required />
+                <input id="username" className="popup__form-item popup__form-item_input_name" type="text" placeholder="Имя" name="name" minLength="2" maxLength="40" required />
                 <span id="username-error" className="popup__form-error"></span>
               </div>
               <div className="popup__form-item-group">
-                <input id="description" className="popup__form-item popup__form-item_input_description" type="text" placeholder="Описание профиля" name="about" minlength="2" maxlength="200" required />
+                <input id="description" className="popup__form-item popup__form-item_input_description" type="text" placeholder="Описание профиля" name="about" minLength="2" maxLength="200" required />
                 <span id="description-error" className="popup__form-error"></span>
               </div>
               <button className="popup__save-button" type="submit">Сохранить</button>
@@ -94,7 +95,7 @@ function App() {
       </div>
 
       <div className="popup" data-type="avatar">
-        <form className="popup__container" name="avatar" id="avatar" novalidate>
+        <form className="popup__container" name="avatar" id="avatar" noValidate>
           <h3 className="popup__title">Обновить аватар</h3>
             <fieldset className="popup__form" form="avatar">
               <div className="popup__form-item-group">
@@ -116,7 +117,7 @@ function App() {
       </div>
 
       <div className="popup" data-type="confirm-delete">
-        <form className="popup__container" name="confirm-delete" id="confirm-delete" novalidate>
+        <form className="popup__container" name="confirm-delete" id="confirm-delete" noValidate>
           <h3 className="popup__title">Вы уверены?</h3>
           <fieldset className="popup__form" form="confirm-delete">
             <button className="popup__save-button popup__save-button_context_confirm-delete" type="submit">Да</button>
@@ -138,7 +139,7 @@ function App() {
           </div>
         </li>
       </template> */}
-
+    </body>
     </>
   )
 }
