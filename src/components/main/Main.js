@@ -5,8 +5,8 @@ import Card from '../../components/card/Card.js'
 
 export default function Main(props) {
 
-  const [userName, setUserName] = React.useState('Безымянный пользователь');
-  const [userDescription, setUserDescription] = React.useState('Фанат ошибок в консоли');
+  const [userName, setUserName] = React.useState('Loading');
+  const [userDescription, setUserDescription] = React.useState('Loading');
   const [userAvatar, setUserAvatar] = React.useState(avatar);
   const [cards, setCards] = React.useState([]);
 

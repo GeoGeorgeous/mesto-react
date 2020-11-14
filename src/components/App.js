@@ -102,7 +102,7 @@ function App() {
           isOpen={isConfirmDeletePopupOpen}
           onClose={closeAllPopups}
           children={(
-            <button class="popup__save-button popup__save-button_context_confirm-delete" type="submit">Да</button>
+            <button className="popup__save-button popup__save-button_context_confirm-delete" type="submit">Да</button>
           )}
         />
 
