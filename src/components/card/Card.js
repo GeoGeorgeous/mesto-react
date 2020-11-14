@@ -6,7 +6,7 @@ export default function Card({data, onCardClick}) {
   }
 
   return(
-    <li className="card" key={data.id}>
+    <li className="card" key={data.id} >
       <img className="card__image" src={data.link} alt={data.title} onClick={handleClick} />
       <button className="card__delete-button" type="button" aria-label="Удалить"></button>
       <div className="card__content">
