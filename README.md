@@ -1,5 +1,5 @@
 # Проект 5: Mesto React
-**[Перейти на сайт](https://geogeorgeous.github.io/mesto/)**
+**[Перейти на сайт](https://GeoGeorgeous.github.io/mesto-react/)**
 
 
 ### О чем проект?
