@@ -15,7 +15,7 @@ function App() {
   const handleEditProfileClick = () => {setEditProfilePopupOpen(true)};
   const handleAddPlaceClick = () => {setAddPlacePopupOpen(true)};
   const handleEditAvatarClick = () => {setEditAvatarPopupOpen(true)}
-  const handleClosePopUpClick = () => {
+  const closeAllPopups = () => {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
@@ -37,7 +37,7 @@ function App() {
           name="profle"
           title="Редактировать профиль"
           isOpen={isEditProfilePopupOpen}
-          onClose={handleClosePopUpClick}
+          onClose={closeAllPopups}
           children={(
             <>
               <div className="popup__form-item-group">
@@ -57,7 +57,7 @@ function App() {
           name="place"
           title="Новое место"
           isOpen={isAddPlacePopupOpen}
-          onClose={handleClosePopUpClick}
+          onClose={closeAllPopups}
           children={(
             <>
               <div className="popup__form-item-group">
@@ -77,7 +77,7 @@ function App() {
           name="avatar"
           title="Обновить аватар"
           isOpen={isEditAvatarPopupOpen}
-          onClose={handleClosePopUpClick}
+          onClose={closeAllPopups}
           children={(
             <>
                 <div className="popup__form-item-group">
