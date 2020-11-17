@@ -30,7 +30,6 @@ export default function Main(props) {
         }}));
     })
     .catch(errorCode => console.error(`${errorCode}: не удалось загрузить карточки.`))
-    api.getCards()
   })
 
   return(
