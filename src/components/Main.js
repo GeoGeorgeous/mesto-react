@@ -11,26 +11,33 @@ export default function Main(props) {
   const [cards, setCards] = React.useState([]);
 
   useEffect(() => {
-    api.getUser()
-    .then(data => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    })
-    .catch(errorCode => console.error(`${errorCode}: не удалось загрузить данные пользователя.`))
 
-    api.getCards()
+    Promise.all([
+      api.getUser(),
+      api.getCards()
+    ])
+    .then(values => {
+      console.log('👍 Успешно подключились к серверу и получили данные!');
+      return {
+        user: values[0],
+        cards: values[1]};
+      }
+    )
     .then(data => {
-      setCards(data.map((card) => {
+      setUserName(data.user.name);
+      setUserDescription(data.user.about);
+      setUserAvatar(data.user.avatar);
+      setCards(data.cards.map((card) => {
         return {
         id: card._id,
         title: card.name,
         link: card.link,
         likes: card.likes.length
-        }}));
+        }
+      }));
     })
-    .catch(errorCode => console.error(`${errorCode}: не удалось загрузить карточки.`))
-  })
+    .catch(errorCode => console.error(`${errorCode}: не удалось загрузить карточки. 📛`))
+  }, []) // Ограничили количество API запросов — 1 раз, при рендере
 
   return(
     <main className="root__main">
