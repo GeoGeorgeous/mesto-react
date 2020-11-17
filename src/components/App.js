@@ -55,7 +55,6 @@ function App() {
                 <input id="description" className="popup__form-item popup__form-item_input_description" type="text" placeholder="Описание профиля" name="about" minLength="2" maxLength="200" required />
                 <span id="description-error" className="popup__form-error"></span>
               </div>
-              <button className="popup__save-button" type="submit">Сохранить</button>
             </>
           )}
         />
@@ -75,7 +74,6 @@ function App() {
                 <input id="link" className="popup__form-item popup__form-item_input_description" type="url" placeholder="Ссылка на картинку" name="link" required />
                 <span id="link-error" className="popup__form-error"></span>
               </div>
-              <button className="popup__save-button" type="submit">Сохранить</button>
             </>
           )}
         />
@@ -91,7 +89,6 @@ function App() {
                   <input id="link" className="popup__form-item popup__form-item_input_name" type="url" placeholder="Ссылка на картинку" name="link" required />
                   <span id="link-error" className="popup__form-error"></span>
                 </div>
-                <button className="popup__save-button" type="submit">Сохранить</button>
             </>
           )}
         />
