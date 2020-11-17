@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './header/Header.js'
-import Main from './main/Main.js'
-import Footer from './footer/Footer.js'
-import PopupWithForm from './popupWithForm/PopupWithForm.js'
-import ImagePopup from './imagePopup/ImagePopup.js'
+import Header from './Header.js'
+import Main from './Main.js'
+import Footer from './Footer.js'
+import PopupWithForm from './PopupWithForm.js'
+import ImagePopup from './ImagePopup.js'
 
 
 function App() {

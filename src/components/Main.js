@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import avatar from '../../images/profile-avatar.jpg';
-import api from '../../utils/Api.js'
-import Card from '../../components/card/Card.js'
+import avatar from '../images/profile-avatar.jpg';
+import api from '../utils/Api.js'
+import Card from '../components/Card.js'
 
 export default function Main(props) {
 
