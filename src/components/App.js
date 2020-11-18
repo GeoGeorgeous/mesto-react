@@ -12,7 +12,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState([])
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   // Хенделры onclick
   const handleEditProfileClick = () => {setEditProfilePopupOpen(true)};
@@ -24,7 +24,7 @@ function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
-    setSelectedCard([]);
+    setSelectedCard({});
   }
 
   // Разметка приложения
