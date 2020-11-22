@@ -7,19 +7,16 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser, submitB
   // Подписка на контекст
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [name, setName] = React.useState(currentUser.name);
-  const [description, setDescription] = React.useState(currentUser.name);
-  let aaa = currentUser.name;
-  let bbb = currentUser.name;
-
-  const [nameValue, setNameValue] = React.useState(aaa);
-  const [descriptionValue, setDescriptionValue] = React.useState(bbb);
-
-
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
   }, [currentUser]);
+
+  const [name, setName] = React.useState(currentUser.name);
+  const [description, setDescription] = React.useState(currentUser.description);
+
+  const [nameValue, setNameValue] = React.useState(currentUser.name);
+  const [descriptionValue, setDescriptionValue] = React.useState(currentUser.description);
 
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.

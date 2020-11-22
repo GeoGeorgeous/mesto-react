@@ -1,7 +1,13 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-export default function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+export default function EditAvatarPopup({
+  isOpen,
+  onClose,
+  onUpdateAvatar,
+  submitButtonText,
+  loadingText,
+  isLoading}) {
 
   const avatarRef = React.useRef();
 
@@ -17,6 +23,9 @@ export default function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      submitButtonText={submitButtonText}
+      loadingText={loadingText}
+      isLoading={isLoading}
       children={(
         <>
                 <div className="popup__form-item-group">

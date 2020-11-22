@@ -41,7 +41,7 @@ function App() {
     .then(serverCards => {
       setCards(serverCards);
     })
-    .catch(errorCode => console.error(`${errorCode}: не удалось загрузить карточки. 📛`))
+    .catch(err => console.error(err))
   }, []) // Ограничили количество API запросов — 1 раз, при рендере
 
 
@@ -55,7 +55,8 @@ function App() {
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       // Обновляем стейт
       setCards(newCards);
-    });
+    })
+    .catch(err => console.error(err))
   }
 
   function handleCardDelete(card){
@@ -66,6 +67,7 @@ function App() {
     // Обновляем стейт
     setCards(cards.filter( c => c._id !== card._id))
   })
+  .catch(err => console.error(err))
   }
 
   // Эффект при монтировании
@@ -74,28 +76,28 @@ function App() {
     .then(user => {
       setCurrentUser(user)
     }, [])
-    // .catch()
+    .catch(err => console.error(err))
   })
 
   function handleUpdateUser(userData) {
     setLoading(true)
-    console.log(userData)
-    // api.setUser(userData)
-    // .then(user => {
-    //   setCurrentUser(user)
-    //   closeAllPopups();
-    //   setLoading(false)
-    // })
-    // .catch()
+    console.log(`Данные на API: ${userData.name} / ${userData.about}`)
+    api.setUser(userData)
+    .then(user => {
+      setCurrentUser(user)
+      closeAllPopups();
+      setLoading(false)
+    })
+    .catch(err => console.error(err))
   }
 
   function handleUpdateAvatar(imgSrc) {
     api.setAvatar(imgSrc)
     .then(user => {
-      setCurrentUser(user)
-      closeAllPopups()
+      setCurrentUser(user);
+      closeAllPopups();
     })
-    // .catch()
+    .catch(err => console.error(err))
   }
 
   function handleAddPlaceSubmit(card) {
@@ -106,7 +108,7 @@ function App() {
       closeAllPopups()
       setLoading(false)
     })
-    // .catch()
+    .catch(err => console.error(err))
   }
 
   // Разметка приложения
@@ -139,6 +141,9 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          submitButtonText='Сохранить'
+          loadingText='Загрузка...'
+          isLoading={isLoading}
         />
 
         <AddPlacePopup
