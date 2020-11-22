@@ -1,4 +1,4 @@
-.card__delete-button {
+.card__delete-button_visible {
   width: 18px;
   height: 20px;
   background-color: initial;
@@ -16,11 +16,11 @@
   cursor: pointer
 }
 
-.card__delete-button:hover {
+.card__delete-button_visible:hover {
   opacity: .6;
 }
 
-.card__delete-button:focus {
+.card__delete-button_visible:focus {
   outline: 0;
 }
 

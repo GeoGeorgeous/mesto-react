@@ -74,6 +74,15 @@ class Api {
     });
   }
 
+  changeLikeCardStatus(card, isLiked) {
+    if (isLiked) {
+      return this.removeLike(card)
+    }
+    else {
+      return this.setLike(card)
+    }
+  }
+
   setLike(card) {
     return this._fetchButCatch(`${this._baseUrl}/cards/likes/${card._id}`, {
       method: 'PUT',
