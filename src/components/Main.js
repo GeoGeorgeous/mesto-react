@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import api from '../utils/Api.js';
 import Card from '../components/Card.js';
-import { CurrentUserContext } from '../contexts/currentUserContext'; // Импортируем контекст
+import CurrentUserContext from '../contexts/currentUserContext'; // Импортируем контекст
 
 export default function Main(props) {
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { CurrentUserContext } from '../contexts/currentUserContext.js';
+import CurrentUserContext from '../contexts/currentUserContext.js';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -35,16 +35,6 @@ function App() {
     setSelectedCard({});
   };
 
-  // Эффект при монтировании компонента
-  useEffect(() => {
-    api.getCards()
-    .then(serverCards => {
-      setCards(serverCards);
-    })
-    .catch(err => console.error(err))
-  }, []) // Ограничили количество API запросов — 1 раз, при рендере
-
-
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -70,18 +60,9 @@ function App() {
   .catch(err => console.error(err))
   }
 
-  // Эффект при монтировании
-  useEffect(() => {
-    api.getUser()
-    .then(user => {
-      setCurrentUser(user)
-    }, [])
-    .catch(err => console.error(err))
-  })
 
   function handleUpdateUser(userData) {
     setLoading(true)
-    console.log(`Данные на API: ${userData.name} / ${userData.about}`)
     api.setUser(userData)
     .then(user => {
       setCurrentUser(user)
@@ -92,10 +73,12 @@ function App() {
   }
 
   function handleUpdateAvatar(imgSrc) {
+    setLoading(true);
     api.setAvatar(imgSrc)
     .then(user => {
       setCurrentUser(user);
       closeAllPopups();
+      setLoading(false);
     })
     .catch(err => console.error(err))
   }
@@ -111,9 +94,23 @@ function App() {
     .catch(err => console.error(err))
   }
 
+
+  useEffect( () => {
+    Promise.all([
+      api.getUser(),
+      api.getCards()
+    ])
+    .then(values => {
+      console.log('👍 Успешно подключились к серверу и получили данные!');
+      const [user, cards] = values
+      setCurrentUser(user);
+      setCards(cards);
+    })
+    .catch(err => console.error(err))
+  }, [])
+
   // Разметка приложения
   return (
-    <>
       <CurrentUserContext.Provider value={currentUser}>
        <div className="root">
         <Header />
@@ -173,7 +170,6 @@ function App() {
 
       </div>
       </CurrentUserContext.Provider>
-    </>
   )
 }
 

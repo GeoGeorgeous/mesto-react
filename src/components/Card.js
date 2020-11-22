@@ -1,5 +1,5 @@
 import React from 'react';
-import {CurrentUserContext} from '../contexts/currentUserContext'; // Импортируем контекст
+import CurrentUserContext from '../contexts/currentUserContext'; // Импортируем контекст
 
 export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
