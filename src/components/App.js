@@ -8,6 +8,7 @@ import ImagePopup from './ImagePopup.js';
 import api from '../utils/Api';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup.js';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [isLoading, setLoading] = React.useState(false);
+  const [cards, setCards] = React.useState([]);
 
   // Хенделры onclick
   const handleEditProfileClick = () => {setEditProfilePopupOpen(true)};
@@ -32,6 +34,39 @@ function App() {
     setEditAvatarPopupOpen(false);
     setSelectedCard({});
   };
+
+  // Эффект при монтировании компонента
+  useEffect(() => {
+    api.getCards()
+    .then(serverCards => {
+      setCards(serverCards);
+    })
+    .catch(errorCode => console.error(`${errorCode}: не удалось загрузить карточки. 📛`))
+  }, []) // Ограничили количество API запросов — 1 раз, при рендере
+
+
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card, isLiked)
+    .then((newCard) => {
+      // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
+      const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+      // Обновляем стейт
+      setCards(newCards);
+    });
+  }
+
+  function handleCardDelete(card){
+  // Снова проверяем, являемся ли мы овнером карточки
+  const isOwner = card.owner._id === currentUser._id;
+  api.deleteCard(card)
+  .then(() => {
+    // Обновляем стейт
+    setCards(cards.filter( c => c._id !== card._id))
+  })
+  }
 
   // Эффект при монтировании
   useEffect(() => {
@@ -63,6 +98,17 @@ function App() {
     // .catch()
   }
 
+  function handleAddPlaceSubmit(card) {
+    setLoading(true)
+    api.uploadCard(card)
+    .then(uploadedCard => {
+      setCards([uploadedCard, ...cards]);
+      closeAllPopups()
+      setLoading(false)
+    })
+    // .catch()
+  }
+
   // Разметка приложения
   return (
     <>
@@ -70,6 +116,9 @@ function App() {
        <div className="root">
         <Header />
         <Main
+          cards={cards}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -92,24 +141,15 @@ function App() {
           onUpdateAvatar={handleUpdateAvatar}
         />
 
-        <PopupWithForm
-          name="place"
-          title="Новое место"
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          children={(
-            <>
-              <div className="popup__form-item-group">
-                <input id="title" className="popup__form-item popup__form-item_input_name" type="text" placeholder="Название" name="title" minLength="1" maxLength="30" required />
-                <span id="title-error" className="popup__form-error"></span>
-              </div>
-              <div className="popup__form-item-group">
-                <input id="link" className="popup__form-item popup__form-item_input_description" type="url" placeholder="Ссылка на картинку" name="link" required />
-                <span id="link-error" className="popup__form-error"></span>
-              </div>
-            </>
-          )}
+          submitButtonText='Добавить'
+          loadingText='Добавление...'
+          isLoading={isLoading}
+          onAddPlace={handleAddPlaceSubmit}
         />
+
 
         <PopupWithForm
           name="confirm-delete"
@@ -120,8 +160,6 @@ function App() {
             <button className="popup__save-button popup__save-button_context_confirm-delete" type="submit">Да</button>
           )}
         />
-
-
 
         <ImagePopup
           card={selectedCard}

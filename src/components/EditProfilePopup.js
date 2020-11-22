@@ -76,5 +76,5 @@ export default function EditProfilePopup({isOpen, onClose, onUpdateUser, submitB
           </div>
         </>
       )}
-  />
-)}
+  />)
+}
