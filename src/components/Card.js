@@ -33,7 +33,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   }
 
   function handleDeleteClick() {
-    // Передаём карточку для изменения лайка:
+    // Передаём карточку для удаления:
     onCardDelete(card)
   }
 
