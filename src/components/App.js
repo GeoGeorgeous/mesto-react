@@ -67,9 +67,11 @@ function App() {
     .then(user => {
       setCurrentUser(user)
       closeAllPopups();
-      setLoading(false)
     })
     .catch(err => console.error(err))
+    .finally(() => {
+      setLoading(false)
+    })
   }
 
   function handleUpdateAvatar(imgSrc) {
@@ -78,9 +80,11 @@ function App() {
     .then(user => {
       setCurrentUser(user);
       closeAllPopups();
-      setLoading(false);
     })
     .catch(err => console.error(err))
+    .finally(() => {
+      setLoading(false)
+    })
   }
 
   function handleAddPlaceSubmit(card) {
@@ -89,9 +93,11 @@ function App() {
     .then(uploadedCard => {
       setCards([uploadedCard, ...cards]);
       closeAllPopups()
-      setLoading(false)
     })
     .catch(err => console.error(err))
+    .finally(() => {
+      setLoading(false)
+    })
   }
 
 

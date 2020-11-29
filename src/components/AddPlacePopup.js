@@ -3,6 +3,9 @@ import PopupWithForm from './PopupWithForm';
 
 export default function AddPlacePopup({isOpen, onClose, submitButtonText, onAddPlace, loadingText, isLoading}) {
 
+
+  const [cardName, setCardName] = React.useState('');
+  const [cardLink, setCardLink] = React.useState('');
   const [newCard, setNewCard] = React.useState({
     name: '',
     link: ''
@@ -10,13 +13,14 @@ export default function AddPlacePopup({isOpen, onClose, submitButtonText, onAddP
 
   function handleOnChange(e) {
     // слабенькая проверка, нужно улучшить или избавиться совсем
-    e.target.id === 'title'
-    ? setNewCard({
-      ...newCard,
-      name: e.target.value})
-    : setNewCard({
-      ...newCard,
-      link: e.target.value})
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    setNewCard({...newCard,
+      [name]: value} );
+      target.name === 'name'
+      ? setCardName(value)
+      : setCardLink(value)
   }
 
   function handleSubmit(e) {
@@ -38,14 +42,15 @@ export default function AddPlacePopup({isOpen, onClose, submitButtonText, onAddP
         <>
           <div className="popup__form-item-group">
             <input
-            id="title"
+            id="name"
             className="popup__form-item popup__form-item_input_name"
             type="text"
             placeholder="Название"
             onChange={ e => handleOnChange(e)}
-            name="title"
+            name="name"
             minLength="1"
             maxLength="30"
+            value={cardName || ''}
             required />
             <span id="title-error" className="popup__form-error"></span>
           </div>
@@ -57,6 +62,7 @@ export default function AddPlacePopup({isOpen, onClose, submitButtonText, onAddP
             placeholder="Ссылка на картинку"
             onChange={ e => handleOnChange(e)}
             name="link"
+            value={cardLink || ''}
             required />
             <span id="link-error" className="popup__form-error"></span>
           </div>
